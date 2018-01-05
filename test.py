@@ -48,3 +48,16 @@ def word_count(words):
     return dic
 
 print(word_count("I do not like it Sam I Am"))
+
+
+TILES = ('-', ' ', '-', ' ', '-', '||',
+         '_', '|', '_', '|', '_', '|', '||',
+         '&', ' ', '_', ' ', '||',
+         ' ', ' ', ' ', '^', ' ', '||'
+)
+
+for x in TILES:
+    if x == '||':
+        print('\n')
+    else:
+        print(x, end='')

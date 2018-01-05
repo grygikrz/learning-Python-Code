@@ -82,6 +82,27 @@ def get_moves(player):
 
     return moves
 
+def draw_map(player):
+    print('You are here:')
+    print(" _"*5)
+    tile = "|{}"
+
+    for cell in CELLS:
+        x, y = cell
+        if x < 4:
+            line_end = ""
+            if cell == player:
+                output = tile.format("X")
+            else:
+                output = tile.format("_")
+        else:
+            line_end = "\n"
+            if cell == player:
+                output = tile.format("X|")
+            else:
+                output = tile.format("_|")
+        print(output,end=line_end)
+
 while True:
     clear_scr()
     try:
@@ -98,18 +119,78 @@ while True:
         door = tuple(data[1])
 
     if player == monster:
-        print('YOU LOSE! MONSTER EAT YOU ALIVE!!')
+        print('YOU LOSE! MONSTER EAT YOU ALIVE!!\n')
+        print("""
+
+                   (    )
+                  ((((()))
+                  |o\ /o)|
+                  ( (  _')
+                   (._.  /\__
+                  ,\___,/ '  ')
+    '.,_,,       (  .- .   .    )
+     \   \\     ( '        )(    )
+      \   \\    \.  _.__ ____( .  |
+       \  /\\   .(   .'  /\  '.  )
+        \(  \\.-' ( /    \/    \)
+         '  ()) _'.-|/\/\/\/\/\|
+             '\\ .( |\/\/\/\/\/|
+               '((  \    /\    /
+               ((((  '.__\/__.')
+                ((,) /   ((()   )
+                 "..-,  (()("   /
+                 _//.   ((() ."
+          _____ //,/" ___ ((( ', ___
+                           ((  )
+                            / /
+                          _/,/'
+                        /,/,"
+
+
+        """)
         break
 
     if player == door:
-        print('YOU WON! YOU ESCAPE FROM DUNGEON. CONGRATULATIONS!!')
+        print('YOU WON! YOU ESCAPE FROM THE DUNGEON. CONGRATULATIONS!!')
+        print("""     ,;``',
+    ;      |
+    ;;. ;;,'
+     `"-'7'.   IT'S TIME TO CELEBRATE!!   _  /
+         |' >.                         .'` |\  -
+         | /  >.                   _\ /   /  |  -
+         '/  / ,`.  __..----.       .'  .'  /  _
+         ;  / /_.-'          \     /_.-`_.-'  \
+          ;' .'  '`           |  - `-.-'
+          |_/                .'   /   \_\_
+          _|  |_    .____.-'`         / __)`\
+         ( `  /\`'-...__.'  \        | '\(_.'|
+          `-\   \ `-'-'-'|   `.      -.  \(_./
+             \   \.-.-.  \     \___ /  >-'\_\
+              \   \  \ \  `/\  |_  '` /
+           _./\    \  ' | /    /_\ .-`
+         .' _.\'.   '.__.'    /`\`'
+  .-.---'\_/   `.`'-..____   ;   \
+ / / .--. |,     `'-._   /`'.|    |
+ `| /-' / / \         `.'    \   _/
+  '-'  '-' \ `-._            _,-' |
+            \    `'''----''''    /
+             >                _.'
+            / /`'-.._____..--'\ \
+           < \                / /
+            \ `.           .'  |___ mx
+          ___\_ `.        /__.-'   ``--..
+   ..--''`     `-.\      (___/`'--.._____)
+  (_____...--'`\___) """)
         break
 
     user_can_move = get_moves(player)
 
-    print('\n---Welcome to the Dungeon !---\n\nTry to escape from dungeon before monster eat you! Good luck!')
+    if not move:
+        print('\n---Welcome to the Dungeon !---\n\nTry to escape from dungeon before monster eat you! Good luck!')
+
     print('You are currently in room nr {}\n'.format(player))
-    print('You can move {}\n'.format(user_can_move))
+    draw_map(player)
+    print('\nYou can move {}\n'.format(user_can_move))
     print('\nEnter q to quit\n')
 
     move = str(input('> '))
