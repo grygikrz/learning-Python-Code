@@ -1,3 +1,5 @@
+# coding=utf-8
+
 def squared(arg):
     if isinstance(arg,int):
         return arg * arg
@@ -49,15 +51,13 @@ def word_count(words):
 
 print(word_count("I do not like it Sam I Am"))
 
+import math
 
-TILES = ('-', ' ', '-', ' ', '-', '||',
-         '_', '|', '_', '|', '_', '|', '||',
-         '&', ' ', '_', ' ', '||',
-         ' ', ' ', ' ', '^', ' ', '||'
-)
-
-for x in TILES:
-    if x == '||':
-        print('\n')
+def check(number):
+    lis = [x**2 for x in range(20)]
+    if number in lis:
+        print('jest potęgą')
     else:
-        print(x, end='')
+        print('nie jest potegą')
+
+check(3)
